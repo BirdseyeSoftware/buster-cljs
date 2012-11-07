@@ -12695,8 +12695,8 @@ cljs.core.UUID.prototype.toString = function() {
   return cljs.core.pr_str.call(null, this)
 };
 cljs.core.UUID;
-var buster_cljs = {assertions:{}};
-buster_cljs.assertions.cljs__GT_js = function cljs__GT_js(b) {
+var buster_cljs = {core:{}};
+buster_cljs.core.cljs__GT_js = function cljs__GT_js(b) {
   if(cljs.core.string_QMARK_.call(null, b)) {
     return b
   }
@@ -12717,7 +12717,7 @@ buster_cljs.assertions.cljs__GT_js = function cljs__GT_js(b) {
   }
   return cljs.core.coll_QMARK_.call(null, b) ? cljs.core.apply.call(null, cljs.core.array, cljs.core.map.call(null, cljs__GT_js, b)) : b
 };
-buster_cljs.assertions.is = function() {
+buster_cljs.core.is = function() {
   var a = function(a, b) {
     return buster.assert(a, b)
   }, b = function(b, d) {
@@ -12737,6 +12737,6 @@ buster_cljs.test = {};
 buster_cljs.test.macros = {};
 cljs.core.not_EQ_.call(null, "undefined", typeof exports) && (buster = require("buster"));
 var test_map__3512__auto__ = cljs.core.assoc.call(null, cljs.core.ObjMap.EMPTY, "dummy test 1 to check source transformation", function() {
-  return buster_cljs.assertions.is.call(null, cljs.core._EQ_.call(null, 6, cljs.core.reduce.call(null, cljs.core._PLUS_, cljs.core.PersistentVector.fromArray([1, 2, 3], !0))))
+  return buster_cljs.core.is.call(null, cljs.core._EQ_.call(null, 6, cljs.core.reduce.call(null, cljs.core._PLUS_, cljs.core.PersistentVector.fromArray([1, 2, 3], !0))))
 });
-buster.testCase("buster-cljs-macros-work", buster_cljs.assertions.cljs__GT_js.call(null, test_map__3512__auto__));
+buster.testCase("buster-cljs-macros-work", buster_cljs.core.cljs__GT_js.call(null, test_map__3512__auto__));

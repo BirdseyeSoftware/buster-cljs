@@ -1,5 +1,5 @@
 (ns buster-cljs.test.macros
-  (:require [buster-cljs.assertions :refer [cljs->js is]])
+  (:require [buster-cljs.core :refer [cljs->js is]])
   (:require-macros [buster-cljs.macros
                     :refer [deftest testing]]))
 

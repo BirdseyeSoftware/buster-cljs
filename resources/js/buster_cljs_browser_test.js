@@ -20805,9 +20805,9 @@ cljs.core.UUID.prototype.toString = function() {
   return cljs.core.pr_str.call(null, this$)
 };
 cljs.core.UUID;
-goog.provide("buster_cljs.assertions");
+goog.provide("buster_cljs.core");
 goog.require("cljs.core");
-buster_cljs.assertions.cljs__GT_js = function cljs__GT_js(x) {
+buster_cljs.core.cljs__GT_js = function cljs__GT_js(x) {
   if(cljs.core.string_QMARK_.call(null, x)) {
     return x
   }else {
@@ -20845,7 +20845,7 @@ buster_cljs.assertions.cljs__GT_js = function cljs__GT_js(x) {
     }
   }
 };
-buster_cljs.assertions.is = function() {
+buster_cljs.core.is = function() {
   var is__delegate = function(bool, msg) {
     return buster.assert(bool, msg)
   };
@@ -20867,13 +20867,13 @@ buster_cljs.assertions.is = function() {
 }();
 goog.provide("buster_cljs.test.macros");
 goog.require("cljs.core");
-goog.require("buster_cljs.assertions");
-goog.require("buster_cljs.assertions");
+goog.require("buster_cljs.core");
+goog.require("buster_cljs.core");
 if(cljs.core.not_EQ_.call(null, "undefined", typeof exports)) {
   buster = require("buster")
 }else {
 }
 var test_map__2836__auto__ = cljs.core.assoc.call(null, cljs.core.ObjMap.EMPTY, "dummy test 1 to check source transformation", function() {
-  return buster_cljs.assertions.is.call(null, cljs.core._EQ_.call(null, 6, cljs.core.reduce.call(null, cljs.core._PLUS_, cljs.core.PersistentVector.fromArray([1, 2, 3], true))))
+  return buster_cljs.core.is.call(null, cljs.core._EQ_.call(null, 6, cljs.core.reduce.call(null, cljs.core._PLUS_, cljs.core.PersistentVector.fromArray([1, 2, 3], true))))
 });
-buster.testCase("buster-cljs-macros-work", buster_cljs.assertions.cljs__GT_js.call(null, test_map__2836__auto__));
+buster.testCase("buster-cljs-macros-work", buster_cljs.core.cljs__GT_js.call(null, test_map__2836__auto__));

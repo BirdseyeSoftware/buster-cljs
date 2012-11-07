@@ -1,4 +1,4 @@
-(ns buster-cljs.assertions)
+(ns buster-cljs.core)
 
 (defn cljs->js
   ;; stolen from

@@ -20805,9 +20805,9 @@ cljs.core.UUID.prototype.toString = function() {
   return cljs.core.pr_str.call(null, this$)
 };
 cljs.core.UUID;
-goog.provide("buster_cljs.assertions");
+goog.provide("buster_cljs.core");
 goog.require("cljs.core");
-buster_cljs.assertions.cljs__GT_js = function cljs__GT_js(x) {
+buster_cljs.core.cljs__GT_js = function cljs__GT_js(x) {
   if(cljs.core.string_QMARK_.call(null, x)) {
     return x
   }else {
@@ -20845,7 +20845,7 @@ buster_cljs.assertions.cljs__GT_js = function cljs__GT_js(x) {
     }
   }
 };
-buster_cljs.assertions.is = function() {
+buster_cljs.core.is = function() {
   var is__delegate = function(bool, msg) {
     return buster.assert(bool, msg)
   };
