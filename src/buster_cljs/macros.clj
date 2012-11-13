@@ -1,15 +1,20 @@
 (ns buster-cljs.macros)
 
 (defmacro initialize-buster []
-   `(if (not= "undefined" (js* "typeof(exports)"))
+   '(if (not= "undefined" (js* "typeof(exports)"))
       (js* "buster = require(\"buster\")")))
 
-(defmacro deftest [desc & body]
-  `(let [test-map# (-> {} ~@body)]
-     (.testCase js/buster ~(name desc)
-        (buster-cljs.core/cljs->js test-map#))))
+(defmacro describe [desc & body]
+  `(.describe (.-spec js/buster) ~(name desc)
+              (fn []
+                ~@body
+                nil)))
 
-(defmacro testing [test-map desc & body]
-  `(assoc ~test-map ~desc
+(defmacro deftest [test-title & body]
+  `(describe ~(name test-title) ~@body))
+
+(defmacro it [desc & body]
+  `(.it (.-spec js/buster) ~desc
          (fn []
-           ~@body)))
+           ~@body
+           nil)))

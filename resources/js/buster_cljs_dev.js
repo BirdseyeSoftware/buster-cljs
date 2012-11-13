@@ -388,13 +388,6 @@ goog.base = function(a, b, c) {
 goog.scope = function(a) {
   a.call(goog.global)
 };
-goog.debug = {};
-goog.debug.Error = function(a) {
-  this.stack = Error().stack || "";
-  a && (this.message = "" + a)
-};
-goog.inherits(goog.debug.Error, Error);
-goog.debug.Error.prototype.name = "CustomError";
 goog.string = {};
 goog.string.Unicode = {NBSP:"\u00a0"};
 goog.string.startsWith = function(a, b) {
@@ -715,6 +708,13 @@ goog.string.toSelectorCaseCache_ = {};
 goog.string.toSelectorCase = function(a) {
   return goog.string.toSelectorCaseCache_[a] || (goog.string.toSelectorCaseCache_[a] = ("" + a).replace(/([A-Z])/g, "-$1").toLowerCase())
 };
+goog.debug = {};
+goog.debug.Error = function(a) {
+  this.stack = Error().stack || "";
+  a && (this.message = "" + a)
+};
+goog.inherits(goog.debug.Error, Error);
+goog.debug.Error.prototype.name = "CustomError";
 goog.asserts = {};
 goog.asserts.ENABLE_ASSERTS = goog.DEBUG;
 goog.asserts.AssertionError = function(a, b) {
@@ -12733,44 +12733,3 @@ buster_cljs.core.is = function() {
   b.cljs$lang$arity$variadic = a;
   return b
 }();
-buster_cljs.test = {};
-buster_cljs.test.macros = {};
-cljs.core.not_EQ_.call(null, "undefined", typeof exports) && (buster = require("buster"));
-buster_cljs.test.macros.fn_that_calls_testing = function() {
-  return buster.spec.it("testing inside function", function() {
-    buster_cljs.core.is.call(null, !0);
-    return null
-  })
-};
-buster.spec.describe("buster-cljs-simple-macros-work", function() {
-  buster.spec.it("single level testing", function() {
-    buster_cljs.core.is.call(null, cljs.core._EQ_.call(null, 6, cljs.core.reduce.call(null, cljs.core._PLUS_, cljs.core.PersistentVector.fromArray([1, 2, 3], !0))));
-    return null
-  });
-  return null
-});
-buster.spec.describe("buster-cljs-nested-macros-work", function() {
-  buster.spec.describe("top-level testing", function() {
-    buster.spec.it("inner-level 1", function() {
-      buster_cljs.core.is.call(null, !0);
-      return null
-    });
-    buster.spec.it("inner-level inner-level 2", function() {
-      buster_cljs.core.is.call(null, !0);
-      return null
-    });
-    return null
-  });
-  return null
-});
-buster.spec.describe("buster-cljs-macros-nested-on-functions", function() {
-  buster_cljs.test.macros.fn_that_calls_testing.call(null);
-  return null
-});
-buster.spec.describe("buster-cljs-macros-inside-let-blocks", function() {
-  buster.spec.it("testing nested on a let block", function() {
-    buster_cljs.core.is.call(null, cljs.core._EQ_.call(null, "uno", "uno"));
-    return null
-  });
-  return null
-});
