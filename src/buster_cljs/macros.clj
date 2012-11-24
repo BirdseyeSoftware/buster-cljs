@@ -1,6 +1,5 @@
 (ns buster-cljs.macros
-  (:refer-clojure :exclude [try])
-  (:require [cljs.core :refer [try]]
+  (:require [cljs.core]
             [clojure.string :as str]))
 
 (defmacro initialize-buster []
@@ -8,10 +7,10 @@
       (js* "buster = require(\"buster\")")))
 
 (defmacro deftest [test-title & body]
-  `(describe ~(str/replace (name test-title) #"-" " ") ~@body))
+  `(describe ~(str/replace (clojure.core/name test-title) #"-" " ") ~@body))
 
 (defmacro describe [desc & body]
-  `(.describe (.-spec js/buster) ~(name desc)
+  `(.describe (.-spec js/buster) ~(clojure.core/name desc)
               (fn []
                 ~@body
                 nil)))
@@ -36,9 +35,9 @@
 (defn assert-predicate [msg form]
   (let [args (rest form)
         pred (first form)]
-    `(let [values# (list ~@args)
-           result# (apply ~pred values#)
-           msg# (and ~msg (str ~msg ". "))]
+    `(let [values# (cljs.core/list ~@args)
+           result# (cljs.core/apply ~pred values#)
+           msg# (and ~msg (cljs.core/str ~msg ". "))]
        (.assert js/buster result# (str msg# "Expected " '~form ", got (not " '~form ")")))))
 
 (defn assert-any [msg form]
@@ -66,31 +65,38 @@
 ;; ;;  WARNING: Use of undeclared Var buster-cljs.test.macros-test/body at line 70 test/buster_cljs/test/macros_test.cljs
 ;; ;;  WARNING: Use of undeclared Var buster-cljs.test.macros-test/msg at line 72 test/buster_cljs/test/macros_test.cljs
 ;; ;;
-;; (defmethod assert-expr 'thrown? [msg form]
-;;   (let [error-type (second form)
-;;         body (nthnext form 2)
-;;         msg (and msg (str msg ". "))]
-;;     `(try
-;;        ~@body
-;;        (.assert js/buster false (str ~msg "Expected error to be thrown."))
-;;        ;; (catch ~error-type e
-;;        (catch ~error-type _
-;;          (.assert js/buster true)))))
 
-;; (defmethod assert-expr 'thrown-with-msg? [msg form]
-;;   (let [error-type (nth form 1)
-;;         re (nth form 2)
-;;         body (nthnext form 3)
-;;         msg (and msg (str msg ". "))]
-;;     `(try
-;;        ~@body
-;;        (.assert js/buster false (str ~msg "Expected error to be thrown."))
-;;        (catch ~error-type e
-;;          (.assert js/buster (re-find ~re (.-message e)))))))
+(defmethod assert-expr 'thrown? [msg form]
+  (let [e (gensym "e")
+        error-type (second form)
+        body (nthnext form 2)
+        msg (and msg (str msg ". "))]
+    `(~'try*
+       ~@body
+       (.assert js/buster false (cljs.core/str ~msg "Expected error to be thrown."))
+       (catch ~e
+           (is (instance? ~error-type ~e))))))
 
-;;;;;;;;;;;;;;;;;;;;
+(defmethod assert-expr 'thrown? [msg form]
+  (let [e (gensym "e")
+        error-type (second form)
+        body (nthnext form 2)
+        msg (and msg (str msg ". "))]
+    `(~'try*
+       ~@body
+       (.assert js/buster false (cljs.core/str ~msg "Expected error to be thrown."))
+       (catch ~e
+           (buster-cljs.macros/is (instance? ~error-type ~e))))))
 
-(defmacro is
-  ([form] `(is ~form nil))
-  ([form msg]
-     `~(assert-expr msg form)))
+(defmethod assert-expr 'thrown-with-msg? [msg form]
+  (let [e (gensym "e")
+        error-type (nth form 1)
+        re (nth form 2)
+        body (nthnext form 3)
+        msg (and msg (str msg ". "))]
+    `(~'try*
+       ~@body
+       (.assert js/buster false (cljs.core/str ~msg "Expected error to be thrown."))
+       (catch ~e
+           (buster-cljs.macros/is (cljs.core/instance? ~error-type ~e))
+         (buster-cljs.macros/is (cljs.core/re-find ~re (.-message ~e)))))))

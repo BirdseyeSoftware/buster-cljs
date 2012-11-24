@@ -1,5 +1,4 @@
 (ns buster-cljs.test.macros-test
-  (:require [buster-cljs.core :as core])
   (:require-macros [buster-cljs.macros
                     :refer [initialize-buster deftest describe it is]]))
 
@@ -46,6 +45,19 @@
     (it "works"
       (is (fn? +) "fn? should work"))))
 
+(deftest is-macro-with-exception-features
+  (describe "assertions with `thrown?'"
+            (it "simple example"
+                (is (thrown? js/Error
+                             (throw (js/Error. "an error")))))
+            (it "using function"
+                (letfn [(thrower [] (throw (js/Error. "this is an error")))]
+                  (is (thrown? js/Error (thrower))))))
+
+  (it "assertions with `thrown-with-msg?'"
+    (is (thrown-with-msg? js/Error #"another error"
+            (throw (js/Error. "another error"))))))
+
 ;; ;; doesn't work currently
 ;; ;; fails with:
 ;; ;;
@@ -58,7 +70,3 @@
 ;; ;;  WARNING: Use of undeclared Var buster-cljs.test.macros-test/body at line 70 test/buster_cljs/test/macros_test.cljs
 ;; ;;  WARNING: Use of undeclared Var buster-cljs.test.macros-test/msg at line 72 test/buster_cljs/test/macros_test.cljs
 ;; ;;
-;; (deftest is-macro-with-exception-features
-;;   (it "assertions with `thrown?'"
-;;     (is (thrown? js/Error
-;;                  (throw (js/Error. "an error"))))))

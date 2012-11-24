@@ -12695,29 +12695,7 @@ cljs.core.UUID.prototype.toString = function() {
   return cljs.core.pr_str.call(null, this)
 };
 cljs.core.UUID;
-var buster_cljs = {core:{}};
-buster_cljs.core.cljs__GT_js = function cljs__GT_js(b) {
-  if(cljs.core.string_QMARK_.call(null, b)) {
-    return b
-  }
-  if(cljs.core.keyword_QMARK_.call(null, b)) {
-    return cljs.core.name.call(null, b)
-  }
-  if(cljs.core.map_QMARK_.call(null, b)) {
-    for(var c = {}, b = cljs.core.seq.call(null, b);;) {
-      if(b) {
-        var d = cljs.core.first.call(null, b), e = cljs.core.nth.call(null, d, 0, null), d = cljs.core.nth.call(null, d, 1, null);
-        c[cljs__GT_js.call(null, e)] = cljs__GT_js.call(null, d);
-        b = cljs.core.next.call(null, b)
-      }else {
-        break
-      }
-    }
-    return c
-  }
-  return cljs.core.coll_QMARK_.call(null, b) ? cljs.core.apply.call(null, cljs.core.array, cljs.core.map.call(null, cljs__GT_js, b)) : b
-};
-buster_cljs.test = {};
+var buster_cljs = {test:{}};
 buster_cljs.test.macros_test = {};
 cljs.core.not_EQ_.call(null, "undefined", typeof exports) && (buster = require("buster"));
 buster_cljs.test.macros_test.fn_that_calls_testing = function() {
@@ -12732,7 +12710,7 @@ buster.spec.describe("simple it macro works", function() {
   buster.spec.it("single level testing", function() {
     var a = cljs.core._EQ_.call(null, 6, cljs.core.reduce.call(null, cljs.core._PLUS_, cljs.core.PersistentVector.fromArray([1, 2, 3], !0))), b;
     b = cljs.core.truth_(null) ? [cljs.core.str(null), cljs.core.str(". ")].join("") : null;
-    buster.assert(a, [cljs.core.str(b), cljs.core.str("Expected "), cljs.core.str(cljs.core.with_meta(cljs.core.list("\ufdd1'=", 6, cljs.core.with_meta(cljs.core.list("\ufdd1'reduce", "\ufdd1'+", cljs.core.vec([1, 2, 3])), cljs.core.hash_map("\ufdd0'line", 14))), cljs.core.hash_map("\ufdd0'line", 14))), cljs.core.str(", got "), cljs.core.str(a)].join(""));
+    buster.assert(a, [cljs.core.str(b), cljs.core.str("Expected "), cljs.core.str(cljs.core.with_meta(cljs.core.list("\ufdd1'=", 6, cljs.core.with_meta(cljs.core.list("\ufdd1'reduce", "\ufdd1'+", cljs.core.vec([1, 2, 3])), cljs.core.hash_map("\ufdd0'line", 13))), cljs.core.hash_map("\ufdd0'line", 13))), cljs.core.str(", got "), cljs.core.str(a)].join(""));
     return null
   });
   return null
@@ -12763,7 +12741,7 @@ buster.spec.describe("macros inside let", function() {
   buster.spec.it("using a let block", function() {
     var a = cljs.core._EQ_.call(null, "uno", "uno"), b;
     b = cljs.core.truth_(null) ? [cljs.core.str(null), cljs.core.str(". ")].join("") : null;
-    buster.assert(a, [cljs.core.str(b), cljs.core.str("Expected "), cljs.core.str(cljs.core.with_meta(cljs.core.list("\ufdd1'=", "\ufdd1'a", "\ufdd1'b"), cljs.core.hash_map("\ufdd0'line", 30))), cljs.core.str(", got "), cljs.core.str(a)].join(""));
+    buster.assert(a, [cljs.core.str(b), cljs.core.str("Expected "), cljs.core.str(cljs.core.with_meta(cljs.core.list("\ufdd1'=", "\ufdd1'a", "\ufdd1'b"), cljs.core.hash_map("\ufdd0'line", 29))), cljs.core.str(", got "), cljs.core.str(a)].join(""));
     return null
   });
   return null
@@ -12773,13 +12751,13 @@ buster.spec.describe("is macro with various predicate functions", function() {
     buster.spec.it("accepts two arguments", function() {
       var a = cljs.core._EQ_.call(null, 1, 1), b;
       b = cljs.core.truth_(null) ? [cljs.core.str(null), cljs.core.str(". ")].join("") : null;
-      buster.assert(a, [cljs.core.str(b), cljs.core.str("Expected "), cljs.core.str(cljs.core.with_meta(cljs.core.list("\ufdd1'=", 1, 1), cljs.core.hash_map("\ufdd0'line", 35))), cljs.core.str(", got "), cljs.core.str(a)].join(""));
+      buster.assert(a, [cljs.core.str(b), cljs.core.str("Expected "), cljs.core.str(cljs.core.with_meta(cljs.core.list("\ufdd1'=", 1, 1), cljs.core.hash_map("\ufdd0'line", 34))), cljs.core.str(", got "), cljs.core.str(a)].join(""));
       return null
     });
     buster.spec.it("accepts multiple arguments", function() {
       var a = cljs.core._EQ_.call(null, 1, 1, 1, 1), b;
       b = cljs.core.truth_(null) ? [cljs.core.str(null), cljs.core.str(". ")].join("") : null;
-      buster.assert(a, [cljs.core.str(b), cljs.core.str("Expected "), cljs.core.str(cljs.core.with_meta(cljs.core.list("\ufdd1'=", 1, 1, 1, 1), cljs.core.hash_map("\ufdd0'line", 37))), cljs.core.str(", got "), cljs.core.str(a)].join(""));
+      buster.assert(a, [cljs.core.str(b), cljs.core.str("Expected "), cljs.core.str(cljs.core.with_meta(cljs.core.list("\ufdd1'=", 1, 1, 1, 1), cljs.core.hash_map("\ufdd0'line", 36))), cljs.core.str(", got "), cljs.core.str(a)].join(""));
       return null
     });
     return null
@@ -12788,13 +12766,13 @@ buster.spec.describe("is macro with various predicate functions", function() {
     buster.spec.it("accepts two arguments", function() {
       var a = cljs.core.not_EQ_.call(null, 1, 2), b;
       b = cljs.core.truth_(null) ? [cljs.core.str(null), cljs.core.str(". ")].join("") : null;
-      buster.assert(a, [cljs.core.str(b), cljs.core.str("Expected "), cljs.core.str(cljs.core.with_meta(cljs.core.list("\ufdd1'not=", 1, 2), cljs.core.hash_map("\ufdd0'line", 41))), cljs.core.str(", got "), cljs.core.str(a)].join(""));
+      buster.assert(a, [cljs.core.str(b), cljs.core.str("Expected "), cljs.core.str(cljs.core.with_meta(cljs.core.list("\ufdd1'not=", 1, 2), cljs.core.hash_map("\ufdd0'line", 40))), cljs.core.str(", got "), cljs.core.str(a)].join(""));
       return null
     });
     buster.spec.it("accepts multiple arguments", function() {
       var a = cljs.core.not_EQ_.call(null, 1, 2, 3), b;
       b = cljs.core.truth_(null) ? [cljs.core.str(null), cljs.core.str(". ")].join("") : null;
-      buster.assert(a, [cljs.core.str(b), cljs.core.str("Expected "), cljs.core.str(cljs.core.with_meta(cljs.core.list("\ufdd1'not=", 1, 2, 3), cljs.core.hash_map("\ufdd0'line", 43))), cljs.core.str(", got "), cljs.core.str(a)].join(""));
+      buster.assert(a, [cljs.core.str(b), cljs.core.str("Expected "), cljs.core.str(cljs.core.with_meta(cljs.core.list("\ufdd1'not=", 1, 2, 3), cljs.core.hash_map("\ufdd0'line", 42))), cljs.core.str(", got "), cljs.core.str(a)].join(""));
       return null
     });
     return null
@@ -12803,9 +12781,48 @@ buster.spec.describe("is macro with various predicate functions", function() {
     buster.spec.it("works", function() {
       var a = cljs.core.fn_QMARK_.call(null, cljs.core._PLUS_), b;
       b = cljs.core.truth_("fn? should work") ? [cljs.core.str("fn? should work"), cljs.core.str(". ")].join("") : "fn? should work";
-      buster.assert(a, [cljs.core.str(b), cljs.core.str("Expected "), cljs.core.str(cljs.core.with_meta(cljs.core.list("\ufdd1'fn?", "\ufdd1'+"), cljs.core.hash_map("\ufdd0'line", 47))), cljs.core.str(", got "), cljs.core.str(a)].join(""));
+      buster.assert(a, [cljs.core.str(b), cljs.core.str("Expected "), cljs.core.str(cljs.core.with_meta(cljs.core.list("\ufdd1'fn?", "\ufdd1'+"), cljs.core.hash_map("\ufdd0'line", 46))), cljs.core.str(", got "), cljs.core.str(a)].join(""));
       return null
     });
+    return null
+  });
+  return null
+});
+buster.spec.describe("is macro with exception features", function() {
+  buster.spec.describe("assertions with `thrown?'", function() {
+    buster.spec.it("simple example", function() {
+      try {
+        throw Error("an error");
+      }catch(a) {
+        var b = cljs.core.instance_QMARK_.call(null, Error, a), c;
+        c = cljs.core.truth_(null) ? [cljs.core.str(null), cljs.core.str(". ")].join("") : null;
+        buster.assert(b, [cljs.core.str(c), cljs.core.str("Expected "), cljs.core.str(cljs.core.list("\ufdd1'clojure.core/instance?", "\ufdd1'js/Error", "\ufdd1'e16113")), cljs.core.str(", got "), cljs.core.str(b)].join(""))
+      }
+      return null
+    });
+    buster.spec.it("using function", function() {
+      try {
+        (function() {
+          throw Error("this is an error");
+        }).call(null), buster.assert(!1, [cljs.core.str(null), cljs.core.str("Expected error to be thrown.")].join(""))
+      }catch(a) {
+        var b = cljs.core.instance_QMARK_.call(null, Error, a), c = cljs.core.truth_(null) ? [cljs.core.str(null), cljs.core.str(". ")].join("") : null;
+        buster.assert(b, [cljs.core.str(c), cljs.core.str("Expected "), cljs.core.str(cljs.core.list("\ufdd1'clojure.core/instance?", "\ufdd1'js/Error", "\ufdd1'e16114")), cljs.core.str(", got "), cljs.core.str(b)].join(""))
+      }
+      return null
+    });
+    return null
+  });
+  buster.spec.it("assertions with `thrown-with-msg?'", function() {
+    try {
+      throw Error("another error");
+    }catch(a) {
+      var b = cljs.core.instance_QMARK_.call(null, Error, a), c = cljs.core.truth_(null) ? [cljs.core.str(null), cljs.core.str(". ")].join("") : null;
+      buster.assert(b, [cljs.core.str(c), cljs.core.str("Expected "), cljs.core.str(cljs.core.list("\ufdd1'cljs.core/instance?", "\ufdd1'js/Error", "\ufdd1'e16115")), cljs.core.str(", got "), cljs.core.str(b)].join(""));
+      b = cljs.core.re_find.call(null, /another error/, a.message);
+      c = cljs.core.truth_(null) ? [cljs.core.str(null), cljs.core.str(". ")].join("") : null;
+      buster.assert(b, [cljs.core.str(c), cljs.core.str("Expected "), cljs.core.str(cljs.core.list("\ufdd1'cljs.core/re-find", /another error/, cljs.core.list("\ufdd1'.-message", "\ufdd1'e16115"))), cljs.core.str(", got "), cljs.core.str(b)].join(""))
+    }
     return null
   });
   return null
