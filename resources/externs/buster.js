@@ -19,6 +19,16 @@ buster.testCase = function(desc, test_spec)  {};
 */
 buster.assert = function(bool_val, fail_desc) {};
 
+
+/**
+* @param {object}
+* @param {object}
+* @param {string}
+*
+* @return {undefined}
+*/
+buster.assert.equals = function(a, b, fail_desc) {};
+
 /**
 * @type {Object}
 *

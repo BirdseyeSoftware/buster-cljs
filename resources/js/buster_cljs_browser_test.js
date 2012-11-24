@@ -388,13 +388,6 @@ goog.base = function(a, b, c) {
 goog.scope = function(a) {
   a.call(goog.global)
 };
-goog.debug = {};
-goog.debug.Error = function(a) {
-  this.stack = Error().stack || "";
-  a && (this.message = "" + a)
-};
-goog.inherits(goog.debug.Error, Error);
-goog.debug.Error.prototype.name = "CustomError";
 goog.string = {};
 goog.string.Unicode = {NBSP:"\u00a0"};
 goog.string.startsWith = function(a, b) {
@@ -715,6 +708,13 @@ goog.string.toSelectorCaseCache_ = {};
 goog.string.toSelectorCase = function(a) {
   return goog.string.toSelectorCaseCache_[a] || (goog.string.toSelectorCaseCache_[a] = ("" + a).replace(/([A-Z])/g, "-$1").toLowerCase())
 };
+goog.debug = {};
+goog.debug.Error = function(a) {
+  this.stack = Error().stack || "";
+  a && (this.message = "" + a)
+};
+goog.inherits(goog.debug.Error, Error);
+goog.debug.Error.prototype.name = "CustomError";
 goog.asserts = {};
 goog.asserts.ENABLE_ASSERTS = goog.DEBUG;
 goog.asserts.AssertionError = function(a, b) {
@@ -12717,59 +12717,95 @@ buster_cljs.core.cljs__GT_js = function cljs__GT_js(b) {
   }
   return cljs.core.coll_QMARK_.call(null, b) ? cljs.core.apply.call(null, cljs.core.array, cljs.core.map.call(null, cljs__GT_js, b)) : b
 };
-buster_cljs.core.is = function() {
-  var a = function(a, b) {
-    return buster.assert(a, b)
-  }, b = function(b, d) {
-    var e = null;
-    goog.isDef(d) && (e = cljs.core.array_seq(Array.prototype.slice.call(arguments, 1), 0));
-    return a.call(this, b, e)
-  };
-  b.cljs$lang$maxFixedArity = 1;
-  b.cljs$lang$applyTo = function(b) {
-    var d = cljs.core.first(b), b = cljs.core.rest(b);
-    return a(d, b)
-  };
-  b.cljs$lang$arity$variadic = a;
-  return b
-}();
 buster_cljs.test = {};
-buster_cljs.test.macros = {};
+buster_cljs.test.macros_test = {};
 cljs.core.not_EQ_.call(null, "undefined", typeof exports) && (buster = require("buster"));
-buster_cljs.test.macros.fn_that_calls_testing = function() {
-  return buster.spec.it("testing inside function", function() {
-    buster_cljs.core.is.call(null, !0);
+buster_cljs.test.macros_test.fn_that_calls_testing = function() {
+  return buster.spec.it("inside function", function() {
+    var a;
+    a = cljs.core.truth_(null) ? [cljs.core.str(null), cljs.core.str(". ")].join("") : null;
+    buster.assert(!0, [cljs.core.str(a), cljs.core.str("Expected "), cljs.core.str(!0), cljs.core.str(", got "), cljs.core.str(!0)].join(""));
     return null
   })
 };
-buster.spec.describe("buster-cljs-simple-macros-work", function() {
+buster.spec.describe("simple it macro works", function() {
   buster.spec.it("single level testing", function() {
-    buster_cljs.core.is.call(null, cljs.core._EQ_.call(null, 6, cljs.core.reduce.call(null, cljs.core._PLUS_, cljs.core.PersistentVector.fromArray([1, 2, 3], !0))));
+    var a = cljs.core._EQ_.call(null, 6, cljs.core.reduce.call(null, cljs.core._PLUS_, cljs.core.PersistentVector.fromArray([1, 2, 3], !0))), b;
+    b = cljs.core.truth_(null) ? [cljs.core.str(null), cljs.core.str(". ")].join("") : null;
+    buster.assert(a, [cljs.core.str(b), cljs.core.str("Expected "), cljs.core.str(cljs.core.with_meta(cljs.core.list("\ufdd1'=", 6, cljs.core.with_meta(cljs.core.list("\ufdd1'reduce", "\ufdd1'+", cljs.core.vec([1, 2, 3])), cljs.core.hash_map("\ufdd0'line", 14))), cljs.core.hash_map("\ufdd0'line", 14))), cljs.core.str(", got "), cljs.core.str(a)].join(""));
     return null
   });
   return null
 });
-buster.spec.describe("buster-cljs-nested-macros-work", function() {
+buster.spec.describe("nested describe it macros work", function() {
   buster.spec.describe("top-level testing", function() {
     buster.spec.it("inner-level 1", function() {
-      buster_cljs.core.is.call(null, !0);
+      var a;
+      a = cljs.core.truth_(null) ? [cljs.core.str(null), cljs.core.str(". ")].join("") : null;
+      buster.assert(!0, [cljs.core.str(a), cljs.core.str("Expected "), cljs.core.str(!0), cljs.core.str(", got "), cljs.core.str(!0)].join(""));
       return null
     });
     buster.spec.it("inner-level inner-level 2", function() {
-      buster_cljs.core.is.call(null, !0);
+      var a;
+      a = cljs.core.truth_(null) ? [cljs.core.str(null), cljs.core.str(". ")].join("") : null;
+      buster.assert(!0, [cljs.core.str(a), cljs.core.str("Expected "), cljs.core.str(!0), cljs.core.str(", got "), cljs.core.str(!0)].join(""));
       return null
     });
     return null
   });
   return null
 });
-buster.spec.describe("buster-cljs-macros-nested-on-functions", function() {
-  buster_cljs.test.macros.fn_that_calls_testing.call(null);
+buster.spec.describe("macros inside functions work", function() {
+  buster_cljs.test.macros_test.fn_that_calls_testing.call(null);
   return null
 });
-buster.spec.describe("buster-cljs-macros-inside-let-blocks", function() {
-  buster.spec.it("testing nested on a let block", function() {
-    buster_cljs.core.is.call(null, cljs.core._EQ_.call(null, "uno", "uno"));
+buster.spec.describe("macros inside let", function() {
+  buster.spec.it("using a let block", function() {
+    var a = cljs.core._EQ_.call(null, "uno", "uno"), b;
+    b = cljs.core.truth_(null) ? [cljs.core.str(null), cljs.core.str(". ")].join("") : null;
+    buster.assert(a, [cljs.core.str(b), cljs.core.str("Expected "), cljs.core.str(cljs.core.with_meta(cljs.core.list("\ufdd1'=", "\ufdd1'a", "\ufdd1'b"), cljs.core.hash_map("\ufdd0'line", 30))), cljs.core.str(", got "), cljs.core.str(a)].join(""));
+    return null
+  });
+  return null
+});
+buster.spec.describe("is macro with various predicate functions", function() {
+  buster.spec.describe("assertions with `='", function() {
+    buster.spec.it("accepts two arguments", function() {
+      var a = cljs.core._EQ_.call(null, 1, 1), b;
+      b = cljs.core.truth_(null) ? [cljs.core.str(null), cljs.core.str(". ")].join("") : null;
+      buster.assert(a, [cljs.core.str(b), cljs.core.str("Expected "), cljs.core.str(cljs.core.with_meta(cljs.core.list("\ufdd1'=", 1, 1), cljs.core.hash_map("\ufdd0'line", 35))), cljs.core.str(", got "), cljs.core.str(a)].join(""));
+      return null
+    });
+    buster.spec.it("accepts multiple arguments", function() {
+      var a = cljs.core._EQ_.call(null, 1, 1, 1, 1), b;
+      b = cljs.core.truth_(null) ? [cljs.core.str(null), cljs.core.str(". ")].join("") : null;
+      buster.assert(a, [cljs.core.str(b), cljs.core.str("Expected "), cljs.core.str(cljs.core.with_meta(cljs.core.list("\ufdd1'=", 1, 1, 1, 1), cljs.core.hash_map("\ufdd0'line", 37))), cljs.core.str(", got "), cljs.core.str(a)].join(""));
+      return null
+    });
+    return null
+  });
+  buster.spec.describe("assertions with `not='", function() {
+    buster.spec.it("accepts two arguments", function() {
+      var a = cljs.core.not_EQ_.call(null, 1, 2), b;
+      b = cljs.core.truth_(null) ? [cljs.core.str(null), cljs.core.str(". ")].join("") : null;
+      buster.assert(a, [cljs.core.str(b), cljs.core.str("Expected "), cljs.core.str(cljs.core.with_meta(cljs.core.list("\ufdd1'not=", 1, 2), cljs.core.hash_map("\ufdd0'line", 41))), cljs.core.str(", got "), cljs.core.str(a)].join(""));
+      return null
+    });
+    buster.spec.it("accepts multiple arguments", function() {
+      var a = cljs.core.not_EQ_.call(null, 1, 2, 3), b;
+      b = cljs.core.truth_(null) ? [cljs.core.str(null), cljs.core.str(". ")].join("") : null;
+      buster.assert(a, [cljs.core.str(b), cljs.core.str("Expected "), cljs.core.str(cljs.core.with_meta(cljs.core.list("\ufdd1'not=", 1, 2, 3), cljs.core.hash_map("\ufdd0'line", 43))), cljs.core.str(", got "), cljs.core.str(a)].join(""));
+      return null
+    });
+    return null
+  });
+  buster.spec.describe("assertions with `fn?'", function() {
+    buster.spec.it("works", function() {
+      var a = cljs.core.fn_QMARK_.call(null, cljs.core._PLUS_), b;
+      b = cljs.core.truth_("fn? should work") ? [cljs.core.str("fn? should work"), cljs.core.str(". ")].join("") : "fn? should work";
+      buster.assert(a, [cljs.core.str(b), cljs.core.str("Expected "), cljs.core.str(cljs.core.with_meta(cljs.core.list("\ufdd1'fn?", "\ufdd1'+"), cljs.core.hash_map("\ufdd0'line", 47))), cljs.core.str(", got "), cljs.core.str(a)].join(""));
+      return null
+    });
     return null
   });
   return null

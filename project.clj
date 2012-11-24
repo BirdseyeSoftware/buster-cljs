@@ -8,25 +8,29 @@
   :source-paths ["src"]
   :cljsbuild
   {:builds
-   {:dev
-    {:source-path "src"
+   [{:id "dev"
+     :source-path "src"
      :compiler
      {:optimizations :simple
       :pretty-print true
       :externs ["resources/externs/buster.js"]
       :output-to "resources/js/buster_cljs_dev.js"}}
-    :browser-test
-    {:source-path "test"
+    ;;;
+    {:id "browser-test"
+     :source-path "test"
+     :notify-command ["./resources/buster_runner.sh"]
      :compiler
      {:optimizations :simple
       :pretty-print true
       :externs ["resouces/externs/buster.js"]
       :libraries ["resources/js/buster_cljs_dev.js"]
       :output-to "resources/js/buster_cljs_browser_test.js"}}
-    :node-test
-    {:source-path "test"
+    ;;;
+    {:id "node-test"
+     :source-path "test"
+     :notify-command ["./resources/buster_runner.sh"]
      :compiler
      {:optimizations :simple
       :libraries ["resources/js/buster_cljs.js"]
       :externs ["resouces/externs/buster_dev.js"]
-      :output-to "resources/js/buster_cljs_node_test.js"}}}})
+      :output-to "resources/js/buster_cljs_node_test.js"}}]})

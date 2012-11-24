@@ -1,8 +1,14 @@
 (ns buster-cljs.clojure
-  (:require [clojure.test :refer [testing]]))
+  (:require [clojure.test :as test]))
+
+(defmacro deftest [title & body]
+  `(test/deftest ~title ~@body))
 
 (defmacro describe [msg & body]
-  `(testing ~msg ~@body))
+  `(test/testing ~msg ~@body))
 
 (defmacro it [msg & body]
-  `(testing ~msg ~@body))
+  `(test/testing ~msg ~@body))
+
+(defmacro is [& args]
+  `(test/is ~@args))
