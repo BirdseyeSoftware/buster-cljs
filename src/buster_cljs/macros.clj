@@ -53,6 +53,8 @@
 (defmethod assert-expr :always-fail [msg form]
   `(.assert js/buster false ~msg))
 
+;;
+;; Leaving comments here for future blogspot about macros and try/catch clauses
 ;; ;; doesn't work currently
 ;; ;; fails with:
 ;; ;;
@@ -66,16 +68,6 @@
 ;; ;;  WARNING: Use of undeclared Var buster-cljs.test.macros-test/msg at line 72 test/buster_cljs/test/macros_test.cljs
 ;; ;;
 
-(defmethod assert-expr 'thrown? [msg form]
-  (let [e (gensym "e")
-        error-type (second form)
-        body (nthnext form 2)
-        msg (and msg (str msg ". "))]
-    `(~'try*
-       ~@body
-       (.assert js/buster false (cljs.core/str ~msg "Expected error to be thrown."))
-       (catch ~e
-           (is (instance? ~error-type ~e))))))
 
 (defmethod assert-expr 'thrown? [msg form]
   (let [e (gensym "e")
