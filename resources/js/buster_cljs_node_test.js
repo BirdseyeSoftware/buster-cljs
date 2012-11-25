@@ -388,6 +388,13 @@ goog.base = function(a, b, c) {
 goog.scope = function(a) {
   a.call(goog.global)
 };
+goog.debug = {};
+goog.debug.Error = function(a) {
+  this.stack = Error().stack || "";
+  a && (this.message = "" + a)
+};
+goog.inherits(goog.debug.Error, Error);
+goog.debug.Error.prototype.name = "CustomError";
 goog.string = {};
 goog.string.Unicode = {NBSP:"\u00a0"};
 goog.string.startsWith = function(a, b) {
@@ -708,13 +715,6 @@ goog.string.toSelectorCaseCache_ = {};
 goog.string.toSelectorCase = function(a) {
   return goog.string.toSelectorCaseCache_[a] || (goog.string.toSelectorCaseCache_[a] = ("" + a).replace(/([A-Z])/g, "-$1").toLowerCase())
 };
-goog.debug = {};
-goog.debug.Error = function(a) {
-  this.stack = Error().stack || "";
-  a && (this.message = "" + a)
-};
-goog.inherits(goog.debug.Error, Error);
-goog.debug.Error.prototype.name = "CustomError";
 goog.asserts = {};
 goog.asserts.ENABLE_ASSERTS = goog.DEBUG;
 goog.asserts.AssertionError = function(a, b) {
@@ -12796,7 +12796,7 @@ buster.spec.describe("is macro with exception features", function() {
       }catch(a) {
         var b = cljs.core.instance_QMARK_.call(null, Error, a), c;
         c = cljs.core.truth_(null) ? [cljs.core.str(null), cljs.core.str(". ")].join("") : null;
-        buster.assert(b, [cljs.core.str(c), cljs.core.str("Expected "), cljs.core.str(cljs.core.list("\ufdd1'clojure.core/instance?", "\ufdd1'js/Error", "\ufdd1'e16113")), cljs.core.str(", got "), cljs.core.str(b)].join(""))
+        buster.assert(b, [cljs.core.str(c), cljs.core.str("Expected "), cljs.core.str(cljs.core.list("\ufdd1'clojure.core/instance?", "\ufdd1'js/Error", "\ufdd1'e3564")), cljs.core.str(", got "), cljs.core.str(b)].join(""))
       }
       return null
     });
@@ -12807,7 +12807,7 @@ buster.spec.describe("is macro with exception features", function() {
         }).call(null), buster.assert(!1, [cljs.core.str(null), cljs.core.str("Expected error to be thrown.")].join(""))
       }catch(a) {
         var b = cljs.core.instance_QMARK_.call(null, Error, a), c = cljs.core.truth_(null) ? [cljs.core.str(null), cljs.core.str(". ")].join("") : null;
-        buster.assert(b, [cljs.core.str(c), cljs.core.str("Expected "), cljs.core.str(cljs.core.list("\ufdd1'clojure.core/instance?", "\ufdd1'js/Error", "\ufdd1'e16114")), cljs.core.str(", got "), cljs.core.str(b)].join(""))
+        buster.assert(b, [cljs.core.str(c), cljs.core.str("Expected "), cljs.core.str(cljs.core.list("\ufdd1'clojure.core/instance?", "\ufdd1'js/Error", "\ufdd1'e3565")), cljs.core.str(", got "), cljs.core.str(b)].join(""))
       }
       return null
     });
@@ -12818,10 +12818,10 @@ buster.spec.describe("is macro with exception features", function() {
       throw Error("another error");
     }catch(a) {
       var b = cljs.core.instance_QMARK_.call(null, Error, a), c = cljs.core.truth_(null) ? [cljs.core.str(null), cljs.core.str(". ")].join("") : null;
-      buster.assert(b, [cljs.core.str(c), cljs.core.str("Expected "), cljs.core.str(cljs.core.list("\ufdd1'cljs.core/instance?", "\ufdd1'js/Error", "\ufdd1'e16115")), cljs.core.str(", got "), cljs.core.str(b)].join(""));
+      buster.assert(b, [cljs.core.str(c), cljs.core.str("Expected "), cljs.core.str(cljs.core.list("\ufdd1'cljs.core/instance?", "\ufdd1'js/Error", "\ufdd1'e3566")), cljs.core.str(", got "), cljs.core.str(b)].join(""));
       b = cljs.core.re_find.call(null, /another error/, a.message);
       c = cljs.core.truth_(null) ? [cljs.core.str(null), cljs.core.str(". ")].join("") : null;
-      buster.assert(b, [cljs.core.str(c), cljs.core.str("Expected "), cljs.core.str(cljs.core.list("\ufdd1'cljs.core/re-find", /another error/, cljs.core.list("\ufdd1'.-message", "\ufdd1'e16115"))), cljs.core.str(", got "), cljs.core.str(b)].join(""))
+      buster.assert(b, [cljs.core.str(c), cljs.core.str("Expected "), cljs.core.str(cljs.core.list("\ufdd1'cljs.core/re-find", /another error/, cljs.core.list("\ufdd1'.-message", "\ufdd1'e3566"))), cljs.core.str(", got "), cljs.core.str(b)].join(""))
     }
     return null
   });

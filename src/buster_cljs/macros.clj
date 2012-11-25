@@ -92,3 +92,8 @@
        (catch ~e
            (buster-cljs.macros/is (cljs.core/instance? ~error-type ~e))
          (buster-cljs.macros/is (cljs.core/re-find ~re (.-message ~e)))))))
+
+(defmacro is
+  ([form] `(buster-cljs.macros/is ~form nil))
+  ([form msg]
+     `~(assert-expr msg form)))

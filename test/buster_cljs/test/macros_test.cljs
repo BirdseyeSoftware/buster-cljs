@@ -39,7 +39,7 @@
     (it "accepts two arguments"
       (is (not= 1 2)))
     (it "accepts multiple arguments"
-        (is (not= 1 2 3))))
+      (is (not= 1 2 3))))
 
   (describe "assertions with `fn?'"
     (it "works"
@@ -58,15 +58,15 @@
     (is (thrown-with-msg? js/Error #"another error"
             (throw (js/Error. "another error"))))))
 
-;; ;; doesn't work currently
-;; ;; fails with:
-;; ;;
-;; ;;   Compiling "resources/js/buster_cljs_node_test.js" failed.
-;; ;;   java.lang.AssertionError: Assert failed: Can't qualify symbol in catch
-;; ;;   (not (namespace name))
-;; ;;
-;; ;; when using single quote fails with:
-;; ;;
-;; ;;  WARNING: Use of undeclared Var buster-cljs.test.macros-test/body at line 70 test/buster_cljs/test/macros_test.cljs
-;; ;;  WARNING: Use of undeclared Var buster-cljs.test.macros-test/msg at line 72 test/buster_cljs/test/macros_test.cljs
-;; ;;
+;; doesn't work currently
+;; fails with:
+;;
+;;   Compiling "resources/js/buster_cljs_node_test.js" failed.
+;;   java.lang.AssertionError: Assert failed: Can't qualify symbol in catch
+;;   (not (namespace name))
+;;
+;; when using single quote fails with:
+;;
+;;  WARNING: Use of undeclared Var buster-cljs.test.macros-test/body at line 70 test/buster_cljs/test/macros_test.cljs
+;;  WARNING: Use of undeclared Var buster-cljs.test.macros-test/msg at line 72 test/buster_cljs/test/macros_test.cljs
+;;
