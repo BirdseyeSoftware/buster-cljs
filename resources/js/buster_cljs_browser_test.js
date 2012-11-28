@@ -12796,7 +12796,7 @@ buster.spec.describe("is macro with exception features", function() {
       }catch(a) {
         var b = cljs.core.instance_QMARK_.call(null, Error, a), c;
         c = cljs.core.truth_(null) ? [cljs.core.str(null), cljs.core.str(". ")].join("") : null;
-        buster.assert(b, [cljs.core.str(c), cljs.core.str("Expected "), cljs.core.str(cljs.core.list("\ufdd1'clojure.core/instance?", "\ufdd1'js/Error", "\ufdd1'e8097")), cljs.core.str(", got "), cljs.core.str(b)].join(""))
+        buster.assert(b, [cljs.core.str(c), cljs.core.str("Expected "), cljs.core.str(cljs.core.list("\ufdd1'clojure.core/instance?", "\ufdd1'js/Error", "\ufdd1'e6432")), cljs.core.str(", got "), cljs.core.str(b)].join(""))
       }
       return null
     });
@@ -12807,7 +12807,7 @@ buster.spec.describe("is macro with exception features", function() {
         }).call(null), buster.assert(!1, [cljs.core.str(null), cljs.core.str("Expected error to be thrown.")].join(""))
       }catch(a) {
         var b = cljs.core.instance_QMARK_.call(null, Error, a), c = cljs.core.truth_(null) ? [cljs.core.str(null), cljs.core.str(". ")].join("") : null;
-        buster.assert(b, [cljs.core.str(c), cljs.core.str("Expected "), cljs.core.str(cljs.core.list("\ufdd1'clojure.core/instance?", "\ufdd1'js/Error", "\ufdd1'e8098")), cljs.core.str(", got "), cljs.core.str(b)].join(""))
+        buster.assert(b, [cljs.core.str(c), cljs.core.str("Expected "), cljs.core.str(cljs.core.list("\ufdd1'clojure.core/instance?", "\ufdd1'js/Error", "\ufdd1'e6433")), cljs.core.str(", got "), cljs.core.str(b)].join(""))
       }
       return null
     });
@@ -12818,10 +12818,10 @@ buster.spec.describe("is macro with exception features", function() {
       throw Error("another error");
     }catch(a) {
       var b = cljs.core.instance_QMARK_.call(null, Error, a), c = cljs.core.truth_(null) ? [cljs.core.str(null), cljs.core.str(". ")].join("") : null;
-      buster.assert(b, [cljs.core.str(c), cljs.core.str("Expected "), cljs.core.str(cljs.core.list("\ufdd1'cljs.core/instance?", "\ufdd1'js/Error", "\ufdd1'e8099")), cljs.core.str(", got "), cljs.core.str(b)].join(""));
+      buster.assert(b, [cljs.core.str(c), cljs.core.str("Expected "), cljs.core.str(cljs.core.list("\ufdd1'cljs.core/instance?", "\ufdd1'js/Error", "\ufdd1'e6434")), cljs.core.str(", got "), cljs.core.str(b)].join(""));
       b = cljs.core.re_find.call(null, /another error/, a.message);
       c = cljs.core.truth_(null) ? [cljs.core.str(null), cljs.core.str(". ")].join("") : null;
-      buster.assert(b, [cljs.core.str(c), cljs.core.str("Expected "), cljs.core.str(cljs.core.list("\ufdd1'cljs.core/re-find", /another error/, cljs.core.list("\ufdd1'.-message", "\ufdd1'e8099"))), cljs.core.str(", got "), cljs.core.str(b)].join(""))
+      buster.assert(b, [cljs.core.str(c), cljs.core.str("Expected "), cljs.core.str(cljs.core.list("\ufdd1'cljs.core/re-find", /another error/, cljs.core.list("\ufdd1'.-message", "\ufdd1'e6434"))), cljs.core.str(", got "), cljs.core.str(b)].join(""))
     }
     return null
   });
