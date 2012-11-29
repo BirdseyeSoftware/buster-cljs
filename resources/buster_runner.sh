@@ -28,13 +28,13 @@
 BUSTER_OUTPUT_FILE=/tmp/buster.log
 
 function exec_in_emacs {
-    if $(command -v emacsclient 2>&1> /dev/null); then
+    if $(command -v emacsclient &> /dev/null); then
         emacsclient -e "$@" 2>&1> /dev/null
     fi
 }
 
 function notify {
-    if $(command -v growlnotify 2>&1> /dev/null); then
+    if $(command -v growlnotify &> /dev/null); then
         growlnotify -t "$1" -m "$2"
     fi
 }
@@ -72,25 +72,26 @@ function run_buster {
     done <<< "$buster_output"
     echo "$buster_output" >> $BUSTER_OUTPUT_FILE
     if [[ $buster_failed -eq 1 ]]; then
-        notify "busterjs" "test suite for $1 failed"
+        notify "busterjs" "Test suite for $2 failed"
     elif [[ ${buster_stats[$buster_stats_failures_index]} > 0 ]] ||
          [[ ${buster_stats[$buster_stats_error_index]} > 0 ]]; then
-        notify "busterjs" "test suite for $1 failed"
         exec_in_emacs '(autotest-mode-fail)'
         exec_in_emacs "(progn
                          (save-window-excursion
                            (find-file \"$BUSTER_OUTPUT_FILE\"))
                          (pop-to-buffer \"buster.log\")
                          (end-of-buffer))"
+        notify "busterjs" "Test suite for $2 failed"
     else
-        notify "busterjs" "test suite for $1 passed"
         exec_in_emacs '(autotest-mode-succeed)'
+        notify "busterjs" "Test suite for $2 succeed"
     fi
     return $buster_exit_code
 }
 
+suite_file=$(echo "$1" | grep -iE '"(.+)"' | grep -oEi '"(.+)"')
 if [[ $1 =~ "browser_test" ]]; then
-    run_buster browser
+    run_buster browser $suite_file
 elif [[ $1 =~ "node_test" ]]; then
-    run_buster node
+    run_buster node $suite_file
 fi
