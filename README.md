@@ -13,7 +13,7 @@ yet another one? Birdseye Software strongly believes that the most
 important thing is not the test API but rather, what facilities the
 test platform provides, buster allows you to:
 
-* Use different browsers[^1] as slaves to run your tests; just set up
+* Use different browsers<sup>1</sup> as slaves to run your tests; just set up
   the buster.js node server, connet to it through the browser you want
   to slave (might be a machine or a mobile phone), and click a
   button. No browser plugins required to be installed.
@@ -50,11 +50,13 @@ With leiningen:
 
 With Maven:
 
+```xml
 <dependency>
   <groupId>com.birdseye</groupId>
   <artifactId>buster-cljs</artifactId>
   <version>1.4.0</version>
 </dependency>
+```xml
 
 ## Getting Started
 
@@ -82,7 +84,7 @@ Distributed under the Eclipse Public License, the same as Clojure.
 
 ## Footnotes
 
-[^1]: browsers might be running in different machines of the same
+[1]: browsers might be running in different machines of the same
 network
 [getting_started]:
 [documentation_site]:
