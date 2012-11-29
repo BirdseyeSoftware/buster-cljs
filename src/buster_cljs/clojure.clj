@@ -1,14 +1,22 @@
 (ns buster-cljs.clojure
   (:require [clojure.test :as test]))
 
-(defmacro deftest [title & body]
+(defmacro deftest
+  "Alias for clojure.test/deftest"
+  [title & body]
   `(test/deftest ~title ~@body))
 
-(defmacro describe [msg & body]
+(defmacro describe
+  "Alias for clojure.test/testing"
+  [msg & body]
   `(test/testing ~msg ~@body))
 
-(defmacro it [msg & body]
+(defmacro it
+  "Alias for clojure.test/testing"
+  [msg & body]
   `(test/testing ~msg ~@body))
 
-(defmacro is [& args]
+(defmacro is
+  "Re-export for clojure.test/is"
+  [& args]
   `(test/is ~@args))

@@ -1,27 +1,47 @@
 (ns buster-cljs.macros
+  ^{:author "Roman Gonzalez with recommendations of Tavis Rudd."}
   (:require [cljs.core]
             [clojure.string :as str]))
 
-(defmacro initialize-buster []
-   '(if (not= "undefined" (js* "typeof(exports)"))
-      (js* "buster = require(\"buster\")")))
+(defmacro initialize-buster
+  "Setup buster for testing code in node.js"
+  []
+  '(if (not= "undefined" (js* "typeof(exports)"))
+     (js* "buster = require(\"buster\")")))
 
-(defmacro deftest [test-title & body]
+(defmacro deftest
+  "Defines a test function with no arguments. This is an alias for the
+   `describe' function, is just here for compatibility with the
+   clojure.test library"
+  [test-title & body]
   `(describe ~(str/replace (clojure.core/name test-title) #"-" " ") ~@body))
 
-(defmacro describe [desc & body]
+(defmacro describe
+  "Defines a context in which a test is happening, you may nest
+   multiple describe calls."
+  [desc & body]
   `(.describe (.-spec js/buster) ~(clojure.core/name desc)
               (fn []
                 ~@body
                 nil)))
 
-(defmacro it [desc & body]
+(defmacro it
+  "Final context definition where the tests are going to be executed,
+  if an `it' call is not specified, tests won't be shown on the result
+  output of the test suite"
+  [desc & body]
   `(.it (.-spec js/buster) ~desc
-         (fn []
-           ~@body
-           nil)))
+        (fn []
+          ~@body
+          nil)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;; ASSERTION METHODS
+
+;; You don't call these, but you can add methods to extend the 'is'
+;; macro. These define different kinds of tests, based on the first
+;; symbol in the test expression.
 
 (defmulti assert-expr
   (fn [msg form]
@@ -32,7 +52,9 @@
 
 ;; ;;;;;;;;;;;;;;;;;;;;
 
-(defn assert-predicate [msg form]
+(defn assert-predicate
+  ""
+  [msg form]
   (let [args (rest form)
         pred (first form)]
     `(let [values# (cljs.core/list ~@args)
@@ -40,17 +62,21 @@
            msg# (and ~msg (cljs.core/str ~msg ". "))]
        (.assert js/buster result# (str msg# "Expected " '~form ", got (not " '~form ")")))))
 
-(defn assert-any [msg form]
+(defn assert-any
+  ""
+  [msg form]
   `(let [value# ~form
          msg# (and ~msg (str ~msg ". "))]
      (.assert js/buster value# (str msg# "Expected " '~form ", got " value#))))
 
-(defmethod assert-expr :default [msg form]
+(defmethod assert-expr :default
+  [msg form]
   (if (and (sequential? form) (fn? (first form)))
     (assert-predicate msg form)
     (assert-any msg form)))
 
-(defmethod assert-expr :always-fail [msg form]
+(defmethod assert-expr :always-fail
+  [msg form]
   `(.assert js/buster false ~msg))
 
 ;;
@@ -93,7 +119,22 @@
            (buster-cljs.macros/is (cljs.core/instance? ~error-type ~e))
          (buster-cljs.macros/is (cljs.core/re-find ~re (.-message ~e)))))))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (defmacro is
+  "Generic assertion macro. 'form' is any predicate test.
+'msg' is an optional message to attach to the assertion.
+Example: (is (= 4 (+ 2 2)) \"Two plus two should be 4\")
+
+Special forms:
+
+(is (thrown? c body)) checks that an instance of c is
+thrown from body, fails if not; then returns the thing
+thrown.
+
+(is (thrown-with-msg? c re body)) checks that an instance
+of c is thrown AND that the message on the exception
+matches (with re-find) the regular expression re."
   ([form] `(buster-cljs.macros/is ~form nil))
   ([form msg]
      `~(assert-expr msg form)))
