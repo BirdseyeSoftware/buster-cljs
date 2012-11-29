@@ -56,7 +56,7 @@ With Maven:
   <artifactId>buster-cljs</artifactId>
   <version>1.4.0</version>
 </dependency>
-```xml
+```
 
 ## Getting Started
 
