@@ -20,3 +20,8 @@
   "Re-export for clojure.test/is"
   [& args]
   `(test/is ~@args))
+
+(defmacro are
+  "Re-export for clojure.test/are"
+  [& args]
+  `(test/are ~@args))

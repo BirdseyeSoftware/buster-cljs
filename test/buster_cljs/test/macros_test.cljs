@@ -1,6 +1,6 @@
 (ns buster-cljs.test.macros-test
   (:require-macros [buster-cljs.macros
-                    :refer [initialize-buster deftest describe it is]]))
+                    :refer [initialize-buster deftest describe it is are]]))
 
 (initialize-buster)
 
@@ -70,3 +70,9 @@
 ;;  WARNING: Use of undeclared Var buster-cljs.test.macros-test/body at line 70 test/buster_cljs/test/macros_test.cljs
 ;;  WARNING: Use of undeclared Var buster-cljs.test.macros-test/msg at line 72 test/buster_cljs/test/macros_test.cljs
 ;;
+
+(deftest are-macro
+  (it "should work correctly"
+    (are [x y] (= x y)
+         2 (+ 1 1)
+         4 (* 2 2))))

@@ -12796,7 +12796,7 @@ buster.spec.describe("is macro with exception features", function() {
       }catch(a) {
         var b = cljs.core.instance_QMARK_.call(null, Error, a), c;
         c = cljs.core.truth_(null) ? [cljs.core.str(null), cljs.core.str(". ")].join("") : null;
-        buster.assert(b, [cljs.core.str(c), cljs.core.str("Expected "), cljs.core.str(cljs.core.list("\ufdd1'clojure.core/instance?", "\ufdd1'js/Error", "\ufdd1'e6671")), cljs.core.str(", got "), cljs.core.str(b)].join(""))
+        buster.assert(b, [cljs.core.str(c), cljs.core.str("Expected "), cljs.core.str(cljs.core.list("\ufdd1'clojure.core/instance?", "\ufdd1'js/Error", "\ufdd1'e4303")), cljs.core.str(", got "), cljs.core.str(b)].join(""))
       }
       return null
     });
@@ -12807,7 +12807,7 @@ buster.spec.describe("is macro with exception features", function() {
         }).call(null), buster.assert(!1, [cljs.core.str(null), cljs.core.str("Expected error to be thrown.")].join(""))
       }catch(a) {
         var b = cljs.core.instance_QMARK_.call(null, Error, a), c = cljs.core.truth_(null) ? [cljs.core.str(null), cljs.core.str(". ")].join("") : null;
-        buster.assert(b, [cljs.core.str(c), cljs.core.str("Expected "), cljs.core.str(cljs.core.list("\ufdd1'clojure.core/instance?", "\ufdd1'js/Error", "\ufdd1'e6672")), cljs.core.str(", got "), cljs.core.str(b)].join(""))
+        buster.assert(b, [cljs.core.str(c), cljs.core.str("Expected "), cljs.core.str(cljs.core.list("\ufdd1'clojure.core/instance?", "\ufdd1'js/Error", "\ufdd1'e4304")), cljs.core.str(", got "), cljs.core.str(b)].join(""))
       }
       return null
     });
@@ -12818,11 +12818,22 @@ buster.spec.describe("is macro with exception features", function() {
       throw Error("another error");
     }catch(a) {
       var b = cljs.core.instance_QMARK_.call(null, Error, a), c = cljs.core.truth_(null) ? [cljs.core.str(null), cljs.core.str(". ")].join("") : null;
-      buster.assert(b, [cljs.core.str(c), cljs.core.str("Expected "), cljs.core.str(cljs.core.list("\ufdd1'cljs.core/instance?", "\ufdd1'js/Error", "\ufdd1'e6673")), cljs.core.str(", got "), cljs.core.str(b)].join(""));
+      buster.assert(b, [cljs.core.str(c), cljs.core.str("Expected "), cljs.core.str(cljs.core.list("\ufdd1'cljs.core/instance?", "\ufdd1'js/Error", "\ufdd1'e4305")), cljs.core.str(", got "), cljs.core.str(b)].join(""));
       b = cljs.core.re_find.call(null, /another error/, a.message);
       c = cljs.core.truth_(null) ? [cljs.core.str(null), cljs.core.str(". ")].join("") : null;
-      buster.assert(b, [cljs.core.str(c), cljs.core.str("Expected "), cljs.core.str(cljs.core.list("\ufdd1'cljs.core/re-find", /another error/, cljs.core.list("\ufdd1'.-message", "\ufdd1'e6673"))), cljs.core.str(", got "), cljs.core.str(b)].join(""))
+      buster.assert(b, [cljs.core.str(c), cljs.core.str("Expected "), cljs.core.str(cljs.core.list("\ufdd1'cljs.core/re-find", /another error/, cljs.core.list("\ufdd1'.-message", "\ufdd1'e4305"))), cljs.core.str(", got "), cljs.core.str(b)].join(""))
     }
+    return null
+  });
+  return null
+});
+buster.spec.describe("are macro", function() {
+  buster.spec.it("should work correctly", function() {
+    var a = cljs.core._EQ_.call(null, 2, 2), b = cljs.core.truth_(null) ? [cljs.core.str(null), cljs.core.str(". ")].join("") : null;
+    buster.assert(a, [cljs.core.str(b), cljs.core.str("Expected "), cljs.core.str(cljs.core.list("\ufdd1'=", 2, cljs.core.list("\ufdd1'+", 1, 1))), cljs.core.str(", got "), cljs.core.str(a)].join(""));
+    a = cljs.core._EQ_.call(null, 4, 4);
+    b = cljs.core.truth_(null) ? [cljs.core.str(null), cljs.core.str(". ")].join("") : null;
+    buster.assert(a, [cljs.core.str(b), cljs.core.str("Expected "), cljs.core.str(cljs.core.list("\ufdd1'=", 4, cljs.core.list("\ufdd1'*", 2, 2))), cljs.core.str(", got "), cljs.core.str(a)].join(""));
     return null
   });
   return null
