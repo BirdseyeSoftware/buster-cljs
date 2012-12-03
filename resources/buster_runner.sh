@@ -29,7 +29,7 @@ BUSTER_OUTPUT_FILE=/tmp/buster.log
 
 function exec_in_emacs {
     if $(command -v emacsclient &> /dev/null); then
-        emacsclient -e "$@" 2>&1> /dev/null
+        emacsclient -e "$@" 2>&1 > /dev/null
     fi
 }
 
@@ -41,7 +41,7 @@ function notify {
 
 function run_buster {
     exec_in_emacs '(autotest-mode-begin-notification)'
-    buster_output=$(buster-test -r specification -C none -e $1 2>&1; exit $?)
+    buster_output=$(buster test -r specification -C none -e $1 2>&1; exit $?)
     buster_exit_code=$?
     if [[ $1 = browser ]]; then
         buster_stats=(0 0 0 0 0 0)
@@ -60,6 +60,11 @@ function run_buster {
     while read -r line; do
         if [[ $line =~ "Unable to connect to server" ]] && [[ $1 = browser ]]; then
             exec_in_emacs '(autotest-mode-warning "Start buster-server in order to test browser")'
+            exec_in_emacs '(sit-for 1)'
+            buster_failed=1
+            break
+        elif [[ $line =~ "No slaves are captured" ]] && [[ $1 = browser ]]; then
+            exec_in_emacs '(autotest-mode-warning "Need to capture a browser on node-server")'
             exec_in_emacs '(sit-for 1)'
             buster_failed=1
             break
