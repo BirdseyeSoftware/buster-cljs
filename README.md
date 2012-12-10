@@ -74,6 +74,8 @@ that comes bundled with lein-cljsbuild 0.2.9
 
 ## Continuous Integration Status
 
+![travis status](https://travis-ci.org/BirdseyeSoftware/buster-cljs.png)
+
 TODO
 
 ## License
