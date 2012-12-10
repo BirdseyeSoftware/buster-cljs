@@ -1,6 +1,13 @@
-language: node_js
+language:
+  - node_js
+  - clojure
+lein: lein2
+jdk:
+  - oraclejdk7
 node_js:
   - "0.8"
+before_install:
+  - lein2 bootstrap
 before_script:
   - "export DISPLAY=:99:0"
   - "echo 'Starting buster server'"
@@ -11,3 +18,5 @@ before_script:
   - "phantomjs ./node_modules/buster/script/phantom.js &"
   - "sleep 3"
   - "echo 'Done.'"
+script:
+  - lein test && npm test
