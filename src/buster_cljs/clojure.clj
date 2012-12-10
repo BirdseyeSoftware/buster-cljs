@@ -1,27 +1,20 @@
 (ns buster-cljs.clojure
-  (:require [clojure.test :as test]))
+  (:require [clojure.test :as test]
+            [potemkin :refer [import-macro]]))
 
-(defmacro deftest
-  "Alias for clojure.test/deftest"
-  [title & body]
-  `(test/deftest ~title ~@body))
+(import-macro test/deftest)
+(import-macro test/is)
+(import-macro test/are)
 
+;;;
 (defmacro describe
-  "Alias for clojure.test/testing"
+  "Alias for clojure.test/testing to match the way buster test
+  hierarchies work"
   [msg & body]
   `(test/testing ~msg ~@body))
 
 (defmacro it
-  "Alias for clojure.test/testing"
+  "Alias for clojure.test/testing to match the way buster test
+  hierarchies work"
   [msg & body]
   `(test/testing ~msg ~@body))
-
-(defmacro is
-  "Re-export for clojure.test/is"
-  [& args]
-  `(test/is ~@args))
-
-(defmacro are
-  "Re-export for clojure.test/are"
-  [& args]
-  `(test/are ~@args))
