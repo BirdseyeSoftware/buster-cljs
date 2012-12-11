@@ -1,8 +1,8 @@
-(defproject buster-cljs "0.1.0-SNAPSHOT"
+(defproject com.birdseye-sw/buster-cljs "0.1.0"
   :description "buster.js clojurescript wrapper"
-  :url "http://example.com/FIXME"
-  :license {:name "Eclipse Public License"
-            :url "http://www.eclipse.org/legal/epl-v10.html"}
+  :url "http://birdseye-sw.com/oss/buster-cljs/"
+  :license {:name "MIT"
+            :url "http://opensource.org/licenses/MIT"}
   :dependencies [[org.clojure/clojure "1.4.0"]
                  [potemkin "0.1.6"]]
   :plugins [[lein-cljsbuild "0.2.9"]]
