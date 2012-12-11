@@ -16,7 +16,7 @@
   <scm>
     <connection>scm:git:git://github.com/BirdseyeSoftware/buster-cljs.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/BirdseyeSoftware/buster-cljs.git</developerConnection>
-    <tag>f0d70ddb076006c39f52d728ffe7a8cfa998dee5</tag>
+    <tag>55d2b9fdc8e03dc097bd8a200e8f2621a41b6fa8</tag>
     <url>https://github.com/BirdseyeSoftware/buster-cljs</url>
   </scm>
   <build>
