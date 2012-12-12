@@ -1,4 +1,4 @@
-# buster-cljs
+# buster-cljs [![Build Status](https://travis-ci.org/BirdseyeSoftware/buster-cljs.png)](https://travis-ci.org/BirdseyeSoftware/buster-cljs)
 
 buster-cljs provides an easy and convenient way to test your
 Clojure/Clojurescript source code by using the same testsuite code
@@ -73,10 +73,6 @@ Please refer to our [documentation site][documentation_site], our
 
 This library has been tested on Clojure 1.4 and Clojurescript version
 that comes bundled with `lein-cljsbuild` 0.2.9
-
-## Continuous Integration Status
-
-[![Build Status](https://travis-ci.org/BirdseyeSoftware/buster-cljs.png)](https://travis-ci.org/BirdseyeSoftware/buster-cljs)
 
 ## License
 
