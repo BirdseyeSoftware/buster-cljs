@@ -56,7 +56,7 @@ With Maven:
 <dependency>
   <groupId>com.birdseye-sw</groupId>
   <artifactId>buster-cljs</artifactId>
-  <version>1.4.0</version>
+  <version>0.1.0</version>
 </dependency>
 ```
 
