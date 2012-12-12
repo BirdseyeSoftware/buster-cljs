@@ -1,4 +1,4 @@
-(defproject com.birdseye-sw/buster-cljs "0.1.0"
+(defproject com.birdseye-sw/buster-cljs "0.1.2-SNAPSHOT"
   :description "buster.js clojurescript wrapper"
   :url "http://birdseye-sw.com/oss/buster-cljs/"
   :license {:name "MIT"
