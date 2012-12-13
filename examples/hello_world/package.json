@@ -1,0 +1,8 @@
+{
+    "name": "hello-world",
+    "description": "Hello world example for buster-cljs",
+    "version": "0.1.0",
+    "author": "Birdseye Software <oss@birdseye-sw.com>",
+    "dependencies" : { "buster" : "~ 0.6.x" },
+    "scripts": { "test": "buster-test -e node && buster-test -e browser" }
+}
