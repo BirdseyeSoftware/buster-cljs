@@ -84,6 +84,6 @@ Distributed under the MIT License.
 
 [1]: browsers might be running in different machines of the same
 network
-[getting_started]:https://birdseye-sw.com/oss/buster-cljs/getting_started/
-[documentation_site]:https://birdseye-sw.com/oss/buster-cljs/
-[test_suite]:https://github.com/BirdseyeSoftware/buster-cljs/blob/master/test/buster_cljs/test/macros_test.cljs
+[getting_started]:http://birdseye-sw.com/oss/buster-cljs/getting_started/
+[documentation_site]:http://birdseye-sw.com/oss/buster-cljs/
+[test_suite]:http://github.com/BirdseyeSoftware/buster-cljs/blob/master/test/buster_cljs/test/macros_test.cljs
