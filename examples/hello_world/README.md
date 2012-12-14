@@ -1,6 +1,6 @@
 # hello_world
 
-Simple hello world application to test buster-cljs
+Simple hello world application to demonstrate buster-cljs usage.
 
 ## Installation & Execution
 
@@ -32,7 +32,7 @@ You need:
 * A `buster.js` file in the root of the project to run test
   suites successfuly
 
-* To match the Javascript products from `lein-cljsbuild` into the
+* To use the Javascript output from `lein-cljsbuild` in the
   `buster.js` file
 
 ## License
