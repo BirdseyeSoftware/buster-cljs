@@ -67,7 +67,7 @@ Please refer to our [Getting Started guide][getting_started].
 ## Documentation & Examples
 
 Please refer to our [documentation site][documentation_site], our
-[test suite][test_suite] also has some examples
+[test suite][test_suite] or the [examples folder][examples] for some examples
 
 ## Supported Clojure Versions
 
@@ -87,3 +87,4 @@ network
 [getting_started]:http://birdseye-sw.com/oss/buster-cljs/getting_started/
 [documentation_site]:http://birdseye-sw.com/oss/buster-cljs/
 [test_suite]:http://github.com/BirdseyeSoftware/buster-cljs/blob/master/test/buster_cljs/test/macros_test.cljs
+[examples]:http://github.com/BirdseyeSoftware/buster-cljs/tree/master/examples/hello_world
