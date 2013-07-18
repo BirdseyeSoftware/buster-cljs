@@ -30,10 +30,15 @@
   if an `it' call is not specified, tests won't be shown on the result
   output of the test suite"
   [desc & body]
-  `(.it (.-spec js/buster) ~desc
-        (fn []
-          ~@body
-          nil)))
+  (condp = (first body)
+    :async `(.it (.-spec js/buster) ~desc
+                 (fn [~'done]
+                   ~@(rest body)
+                   nil))
+    `(.it (.-spec js/buster) ~desc
+          (fn []
+            ~@body
+            nil))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

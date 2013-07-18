@@ -71,6 +71,11 @@
 ;;  WARNING: Use of undeclared Var buster-cljs.test.macros-test/msg at line 72 test/buster_cljs/test/macros_test.cljs
 ;;
 
+(deftest async-test
+  ;; NOTE: this uses the internal async features from busterjs
+  (it "should be async" :async
+     (js/setTimeout #(done (is true)) 150)))
+
 (deftest are-macro
   (it "should work correctly"
     (are [x y] (= x y)
