@@ -11,3 +11,4 @@ node_modules
 .lein-failures
 .lein-plugins
 .lein-*
+pom.xml.asc

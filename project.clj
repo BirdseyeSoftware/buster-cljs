@@ -1,8 +1,10 @@
-(defproject com.birdseye-sw/buster-cljs "0.1.2"
+(defproject com.birdseye-sw/buster-cljs "0.1.3-SNAPSHOT"
   :description "Crossbrowser/Crossplatform Clojurescript testing"
   :url "http://birdseye-sw.com/oss/buster-cljs/"
   :license {:name "MIT"
             :url "http://opensource.org/licenses/MIT"}
+  :scm {:name "git"
+        :url "https://github.com/BirdseyeSoftware/buster-cljs"}
   :dependencies [[org.clojure/clojure "1.5.1"]
                  [potemkin "0.1.6"]]
   :plugins [[lein-cljsbuild "0.3.2"]]
