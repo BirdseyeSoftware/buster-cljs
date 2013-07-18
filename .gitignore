@@ -2,6 +2,8 @@
 /lib
 /classes
 /checkouts
+resources/js/buster_cljs_browser_test.js
+resources/js/buster_cljs_node_test.js
 node_modules
 *.jar
 *.class
