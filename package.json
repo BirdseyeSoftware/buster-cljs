@@ -2,7 +2,10 @@
     "name": "buster-cljs",
     "description": "",
     "version": "0.1.0",
-    "author": "",
+    "author": "Birdseye Software",
+    "repository" :{ "type" : "git"
+                    , "url" : "https://github.com/BirdseyeSoftware/buster-cljs.git"
+                  },
     "dependencies" : { "buster" : "~ 0.6.x" },
-    "scripts": { "test": "buster-test -e node && buster-test -e browser" }
+    "scripts": { "test": "./run-buster-tests.sh" }
 }
