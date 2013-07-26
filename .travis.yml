@@ -8,7 +8,7 @@ node_js:
   - "0.8"
 before_script:
   - "echo generating the js from cljs"
-  - "lein cljsbuild once"
+  - "lein2 cljsbuild once"
   - "export DISPLAY=:99:0"      # for phantom
   - "echo 'Done.'"
 script:
