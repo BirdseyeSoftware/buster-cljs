@@ -6,6 +6,6 @@
     "repository" :{ "type" : "git"
                     , "url" : "https://github.com/BirdseyeSoftware/buster-cljs.git"
                   },
-    "dependencies" : { "buster" : "~ 0.6.x" },
+    "dependencies" : { "buster" : "~ 0.7.x" },
     "scripts": { "test": "./run-buster-tests.sh" }
 }
