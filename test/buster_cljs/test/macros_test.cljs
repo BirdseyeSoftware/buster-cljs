@@ -1,7 +1,7 @@
 (ns buster-cljs.test.macros-test
   (:require-macros [buster-cljs.macros
                     :refer [initialize-buster deftest describe it is are]])
-  (:require [clojure.data :refer [diff]]))
+  (:require [buster-cljs.runtime :as _runtime]))
 
 (initialize-buster)
 
@@ -62,9 +62,9 @@
 ;; (deftest is-macro-with-eq
 ;;   (describe "assertions with `eq'"
 ;;     (it "simple example"
-;;       (is (= 1 (inc 2)))
-;;       #_(is (= {:hello "world"}
-;;               (assoc {} :hola "mundo"))))))
+;;       #_(is (= 1 (inc 2)))
+;;       (is (= {:hello "world"}
+;;              (assoc {} :hola "mundo"))))))
 
 ;; doesn't work currently
 ;; fails with:

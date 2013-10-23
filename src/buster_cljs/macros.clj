@@ -112,7 +112,7 @@
        (if (and (map? a-result#)
                 (map? b-result#))
          ;; use-diff
-         (let [[only-a# only-b# both# :as result#] (clojure.data/diff a-result# b-result#)]
+         (let [[only-a# only-b# both# :as result#] (buster-cljs.runtime/diff a-result# b-result#)]
            (if (and (empty? only-a#)
                     (empty? only-b#))
              (.assert js/buster true)
