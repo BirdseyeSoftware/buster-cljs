@@ -14,9 +14,9 @@
    `describe' function, is just here for compatibility with the
    clojure.test library"
   [test-title & body]
-  `(if (and (goog.isDefAndNotNull "window")
-            (not (goog.isDefAndNotNull "window.buster"))
-            (goog.isDefAndNotNull "window.buster_cljs_drop_test_on_missing_buster"))
+  `(if (and (goog.isDefAndNotNull js/window)
+            (not (goog.isDefAndNotNull js/window.buster))
+            (goog.isDefAndNotNull js/window.buster_cljs_drop_test_on_missing_buster))
      nil
      ;; else
      (describe ~(str/replace (clojure.core/name test-title) #"-" " ") ~@body)))
