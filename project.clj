@@ -12,7 +12,8 @@
   :source-paths ["src"]
   :hooks [leiningen.cljsbuild]
   :cljsbuild
-  {:builds
+  {:test-commands {"buster" ["./run-buster-tests.sh"]}
+   :builds
    [{:id "browser-test"
      :source-paths ["src" "test"]
      :compiler
