@@ -109,8 +109,8 @@
     `(let [msg# (and ~msg (cljs.core/str ~msg ". "))
            a-result# ~a
            b-result# ~b]
-       (if (and (map? a-result#)
-                (map? b-result#))
+       (if (and (coll? a-result#)
+                (coll? b-result#))
          ;; use-diff
          (let [[only-a# only-b# both# :as result#] (buster-cljs.runtime/diff a-result# b-result#)]
            (if (and (empty? only-a#)
