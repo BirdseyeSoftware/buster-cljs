@@ -133,12 +133,13 @@
   (let [e (gensym "e")
         error-type (second form)
         body (nthnext form 2)
-        msg (and msg (str msg ". "))]
-    `(~'try*
+        msg (and msg (str msg ". "))
+        ]
+    `(try
        ~@body
        (.assert js/buster false (cljs.core/str ~msg "Expected error to be thrown."))
-       (catch ~e
-           (buster-cljs.macros/is (instance? ~error-type ~e))))))
+       (catch ~error-type ~e
+         (.assert js/buster true)))))
 
 (defmethod assert-expr 'thrown-with-msg? [msg form]
   (let [e (gensym "e")
@@ -146,12 +147,11 @@
         re (nth form 2)
         body (nthnext form 3)
         msg (and msg (str msg ". "))]
-    `(~'try*
+    `(try
        ~@body
        (.assert js/buster false (cljs.core/str ~msg "Expected error to be thrown."))
-       (catch ~e
-           (buster-cljs.macros/is (cljs.core/instance? ~error-type ~e))
-         (buster-cljs.macros/is (cljs.core/re-find ~re (.-message ~e)))))))
+       (catch ~error-type ~e
+         (.assert js/buster true)))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

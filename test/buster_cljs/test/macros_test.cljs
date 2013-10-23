@@ -48,10 +48,10 @@
 
 (deftest is-macro-with-exception-features
   (describe "assertions with `thrown?'"
-            (it "simple example"
+    (it "simple example"
                 (is (thrown? js/Error
                              (throw (js/Error. "an error")))))
-            (it "using function"
+    (it "using function"
                 (letfn [(thrower [] (throw (js/Error. "this is an error")))]
                   (is (thrown? js/Error (thrower))))))
 
