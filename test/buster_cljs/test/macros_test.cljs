@@ -1,6 +1,7 @@
 (ns buster-cljs.test.macros-test
   (:require-macros [buster-cljs.macros
-                    :refer [initialize-buster deftest describe it is are]]))
+                    :refer [initialize-buster deftest describe it is are]])
+  (:require [clojure.data :refer [diff]]))
 
 (initialize-buster)
 
@@ -57,6 +58,13 @@
   (it "assertions with `thrown-with-msg?'"
     (is (thrown-with-msg? js/Error #"another error"
             (throw (js/Error. "another error"))))))
+
+;; (deftest is-macro-with-eq
+;;   (describe "assertions with `eq'"
+;;     (it "simple example"
+;;       (is (= 1 (inc 2)))
+;;       #_(is (= {:hello "world"}
+;;               (assoc {} :hola "mundo"))))))
 
 ;; doesn't work currently
 ;; fails with:

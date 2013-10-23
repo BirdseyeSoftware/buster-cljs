@@ -14,7 +14,12 @@
    `describe' function, is just here for compatibility with the
    clojure.test library"
   [test-title & body]
-  `(describe ~(str/replace (clojure.core/name test-title) #"-" " ") ~@body))
+  `(if (and (goog.isDefAndNotNull "window")
+            (not (goog.isDefAndNotNull "window.buster"))
+            (goog.isDefAndNotNull "window.buster_cljs_drop_test_on_missing_buster"))
+     nil
+     ;; else
+     (describe ~(str/replace (clojure.core/name test-title) #"-" " ") ~@body)))
 
 (defmacro describe
   "Defines a context in which a test is happening, you may nest
@@ -99,6 +104,30 @@
 ;; ;;  WARNING: Use of undeclared Var buster-cljs.test.macros-test/msg at line 72 test/buster_cljs/test/macros_test.cljs
 ;; ;;
 
+(defmethod assert-expr '= [msg form]
+  (let [[a b] (rest form)]
+    `(let [msg# (and ~msg (cljs.core/str ~msg ". "))
+           a-result# ~a
+           b-result# ~b]
+       (if (and (map? a-result#)
+                (map? b-result#))
+         ;; use-diff
+         (let [[only-a# only-b# both# :as result#] (clojure.data/diff a-result# b-result#)]
+           (if (and (empty? only-a#)
+                    (empty? only-b#))
+             (.assert js/buster true)
+             (.assert js/buster false
+                      (cljs.core/str msg# "Expected " '~a " (a) to be equal to " '~b " (b), got: "
+                                     "\n  only (a): " (pr-str only-a#)
+                                     "\n  only (b): " (pr-str only-b#)
+                                     "\n  both (a) and (b): " (pr-str both#)))))
+         ;; else use =
+         (if (cljs.core/= a-result# b-result#)
+           (.assert js/buster true)
+           (.assert js/buster false
+                    (cljs.core/str msg# "Expected to be equal but got: "
+                                   "\n  expected: " (pr-str a-result#)
+                                   "\n  got: " (pr-str b-result#))))))))
 
 (defmethod assert-expr 'thrown? [msg form]
   (let [e (gensym "e")
