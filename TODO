@@ -1,0 +1,4 @@
+convert (is (eq a b)) to use something like:
+  https://github.com/GeorgeJahad/difform/blob/master/src/com/georgejahad/difform.clj
+  https://npmjs.org/package/googlediff
+  https://github.com/brentonashworth/lein-difftest
