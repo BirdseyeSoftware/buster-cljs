@@ -10,6 +10,7 @@
                  [potemkin "0.3.3"]]
   :plugins [[lein-cljsbuild "0.3.3"]]
   :source-paths ["src"]
+  :hooks [leiningen.cljsbuild]
   :cljsbuild
   {:builds
    [{:id "browser-test"
