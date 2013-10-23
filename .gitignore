@@ -12,3 +12,4 @@ node_modules
 .lein-plugins
 .lein-*
 pom.xml.asc
+/pom.xml
